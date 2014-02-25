@@ -1,13 +1,10 @@
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
-		<legend><?php echo __('Add User'); ?></legend>
+		<legend><?php echo __('Login'); ?></legend>
 	<?php
-		//echo $this->Form->input('group_id');
 		echo $this->Form->input('username',array('label' => 'Nombre de usuario'));
-		echo $this->Form->input('Perfil.email', array('label' => 'Correo electronico'));
 		echo $this->Form->input('password', array('label' => 'Clave'));
-		echo $this->Form->input('repassword', array('label' => 'Repite la clave', 'type' => 'password'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

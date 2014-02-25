@@ -70,6 +70,12 @@ class UsersController extends AppController {
  * @return void
  */
 	public function login(){
+		if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                return $this->redirect($this->Auth->redirect());
+            }
+            $this->Session->setFlash(__('Tu usuario o clave es incorrecta'));
+        }
 
 	}
 
@@ -90,9 +96,10 @@ class UsersController extends AppController {
 	public function register() {
 		if ($this->request->is('post')) {
 			$this->User->create();
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved.'));
-				//return $this->redirect(array('action' => 'index'));
+			$this->request->data['User']['group_id']= 3;
+			if ($this->User->saveAll($this->request->data)) {
+				$this->Session->setFlash(__('Gracias por registrarse.'));
+				return $this->redirect(array('action' => 'login'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}

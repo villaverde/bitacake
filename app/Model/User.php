@@ -39,6 +39,10 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'isUnique' => array(
+				'rule' => 'isUnique',
+				'message' => 'El nombre de usuario ya existe'
+			),
 		),
 		'password' => array(
 			'notEmpty' => array(
@@ -74,13 +78,6 @@ class User extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Perfil' => array(
-			'className' => 'Perfil',
-			'foreignKey' => 'perfil_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
 		'Group' => array(
 			'className' => 'Group',
 			'foreignKey' => 'group_id',
@@ -89,34 +86,14 @@ class User extends AppModel {
 			'order' => ''
 		)
 	);
-
-/**
- * hasMany associations
- *
- * @var array
- */
-	public $hasMany = array(
-		'Perfil' => array(
-			'className' => 'Perfil',
-			'foreignKey' => 'user_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
+	
+	public $hasOne = 'Perfil';
 
 	public function beforeSave($options = array()) {
-                //Hacemos que cada vez que guarde la clave en la base de datos la hashed
-                $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
-                $this->data['User']['repassword'] = AuthComponent::password($this->data['User']['repassword']);
-                return true;
-        }
+        //Hacemos que cada vez que guarde la clave en la base de datos la hashed
+        $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+        return true;
+    }
 
     public function compararpassword($field=array(), $compararepassword=null ){
     	foreach( $field as $key => $value ){ 
