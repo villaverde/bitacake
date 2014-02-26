@@ -39,26 +39,8 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'isUnique' => array(
-				'rule' => 'isUnique',
-				'message' => 'El nombre de usuario ya existe'
-			),
 		),
 		'password' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'compararpassword' => array(
-							'rule' => array('compararpassword', 'repassword'),
-							'message' => 'Las claves no coinciden'
-			),
-		),
-		'repassword' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
@@ -78,6 +60,13 @@ class User extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
+		'Perfil' => array(
+			'className' => 'Perfil',
+			'foreignKey' => 'perfil_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Group' => array(
 			'className' => 'Group',
 			'foreignKey' => 'group_id',
@@ -86,25 +75,26 @@ class User extends AppModel {
 			'order' => ''
 		)
 	);
-	
-	public $hasOne = 'Perfil';
 
-	public function beforeSave($options = array()) {
-        //Hacemos que cada vez que guarde la clave en la base de datos la hashed
-        $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
-        return true;
-    }
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'Perfil' => array(
+			'className' => 'Perfil',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
 
-    public function compararpassword($field=array(), $compararepassword=null ){
-    	foreach( $field as $key => $value ){ 
-    		$var1 = $value;
-    		$var2 = $this->data[$this->name][$compararepassword];
-    		 if($var1 !== $var2) {
-                return FALSE;
-            } else {
-                continue;
-            } 
-    	}
-    	return TRUE;
-    }
 }
