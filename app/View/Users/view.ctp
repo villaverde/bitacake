@@ -16,9 +16,9 @@
 			<?php echo h($user['User']['username']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Password'); ?></dt>
+		<dt><?php echo __('Avatar'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['password']); ?>
+			<?php echo "<img src=\"".h($user['Perfil']['avatar'])."\" />"; ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
@@ -47,38 +47,6 @@
 	</ul>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Perfils'); ?></h3>
-	<?php if (!empty($user['Perfil'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
-		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Email'); ?></th>
-		<th><?php echo __('Abatar'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Modified'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($user['Perfil'] as $perfil): ?>
-		<tr>
-			<td><?php echo $perfil['id']; ?></td>
-			<td><?php echo $perfil['user_id']; ?></td>
-			<td><?php echo $perfil['name']; ?></td>
-			<td><?php echo $perfil['email']; ?></td>
-			<td><?php echo $perfil['abatar']; ?></td>
-			<td><?php echo $perfil['created']; ?></td>
-			<td><?php echo $perfil['modified']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'perfils', 'action' => 'view', $perfil['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'perfils', 'action' => 'edit', $perfil['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'perfils', 'action' => 'delete', $perfil['id']), null, __('Are you sure you want to delete # %s?', $perfil['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
 	<div class="actions">
 		<ul>
 			<li><?php echo $this->Html->link(__('New Perfil'), array('controller' => 'perfils', 'action' => 'add')); ?> </li>

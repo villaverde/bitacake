@@ -70,4 +70,17 @@ class Perfil extends AppModel {
 			'order' => ''
 		)
 	);
+
+	function afterFind($resultados, $primary = false) {
+    	//Integracion de gravatar
+    	//Si el usuario no tiene avatar propio en el blog
+    	//buscara en la web de gravatar
+    	foreach ($resultados as $clave => $valor) {
+    		if($valor['Perfil']['avatar']==""){
+    			$resultados[$clave]['Perfil']['avatar']="http://www.gravatar.com/avatar/".md5(strtolower(trim($valor['Perfil']['email'])))."?d=http://www.agdpvigo.net/img/useranon.png&s=60";
+    			//$resultados[$clave]['Perfil']['avatar']='gravatar';
+    		}
+    	}
+    	return $resultados;
+    }
 }
