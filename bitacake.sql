@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `perfils` (
   `user_id` int(11) NOT NULL,
   `name` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
-  `abatar` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
+  `avatar` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -57,16 +57,16 @@ CREATE TABLE IF NOT EXISTS `perfils` (
 -- Estructura de tabla para la tabla `users`
 --
 
+
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `perfil_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   `username` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(75) COLLATE utf8_spanish_ci NOT NULL,
   `modified` datetime NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
