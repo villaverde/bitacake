@@ -65,6 +65,15 @@ class UsersController extends AppController {
 	}
 
 /**
+ * index method
+ *
+ * @return void
+ */ 
+	public function index(){
+		
+	}
+
+/**
  * login method
  *
  * @return void

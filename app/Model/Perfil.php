@@ -72,7 +72,7 @@ class Perfil extends AppModel {
     	//Si el usuario no tiene avatar propio en el blog
     	//buscara en la web de gravatar
     	foreach ($resultados as $clave => $valor) {
-    		if($valor['Perfil']['avatar']==""){
+    		if(isset($valor['Perfil']['avatar']) and $valor['Perfil']['avatar']==""){
     			$resultados[$clave]['Perfil']['avatar']="http://www.gravatar.com/avatar/".md5(strtolower(trim($valor['Perfil']['email'])))."?d=http://www.agdpvigo.net/img/useranon.png&s=60";
     			//$resultados[$clave]['Perfil']['avatar']='gravatar';
     		}
