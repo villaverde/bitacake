@@ -32,3 +32,22 @@
     text-decoration: none;
     text-shadow: 0 1px 0 #FFFFFF;
 }
+.mas{
+	float:right;
+}
+#contenido_post{
+	margin-top:40px;
+}
+.modify_post{
+	float:right;
+}
+.comment_created{
+	text-align:right;
+	font-size:10px;
+}
+.comment_body{
+	font-size:12px;
+}
+.related{
+	width:60%;
+}

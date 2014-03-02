@@ -7,12 +7,12 @@
 			<?php echo $this->Text->truncate($post['Post']['body'],400,array(
 																				'html'=>true,
 																				'exact'=>true,
-					'ellipsis'=> $this->html->link('leer más...',array('controller'=>'posts','action'=>'view',$post['Post']['id'])))); ?>
+					'ellipsis'=> '<p class="mas">'.$this->html->link('leer más...',array('controller'=>'posts','action'=>'view',$post['Post']['id'])))).'</p>'; ?>
 			<?php /*echo "<p class='noticia'>".$this->html->link('leer más...',array('controller'=>'posts','action'=>'view',$post['Post']['id']))."</p>"; */?>
 		</div>
 		<div class="action">
-			<?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $post['Post']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $post['Post']['id']), null, __('Are you sure you want to delete # %s?', $post['Post']['id'])); ?>
+			<p><?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $post['Post']['id'])); ?></p>
+			<p><?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $post['Post']['id']), null, __('Are you sure you want to delete # %s?', $post['Post']['id'])); ?></p>
 		</div>
 		<div class="pie_post">
 			Creado el 
