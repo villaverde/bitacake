@@ -43,6 +43,23 @@ class PostsController extends AppController {
 		}
 		$options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
 		$this->set('post', $this->Post->find('first', $options));
+		
+//añadir comentarios
+
+		if ($this->request->is('post')) {
+			$this->Post->Comment->create();
+			if ($this->Post->Comment->save($this->request->data)) {
+				$this->Session->setFlash(__('The comment has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The comment could not be saved. Please, try again.'));
+			}
+		}
+		$users = $this->Post->Comment->User->find('list');
+		$posts = $this->Post->find('list');
+		//$this->set(compact('users', 'posts'));
+
+
 	}
 
 /**
@@ -50,7 +67,7 @@ class PostsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function admin_add() {
 
 		if ($this->request->is('post')) {
 			$this->Post->create();
@@ -72,7 +89,7 @@ class PostsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 		if (!$this->Post->exists($id)) {
 			throw new NotFoundException(__('Invalid post'));
 		}
@@ -98,7 +115,7 @@ class PostsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		$this->Post->id = $id;
 		if (!$this->Post->exists()) {
 			throw new NotFoundException(__('Invalid post'));
@@ -111,4 +128,7 @@ class PostsController extends AppController {
 		$this->Session->setFlash(__('Post was not deleted'));
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+		
 }

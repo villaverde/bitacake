@@ -4,8 +4,11 @@
 		<?php foreach ($posts as $post): ?>
 		<div class="titulo"><?php echo h($post['Post']['title']); ?></div>
 		<div class="contenido">
-			<?php echo substr(stripslashes($post['Post']['body']),0,72430); ?>
-			<?php echo "<p class='noticia'>".$this->html->link('leer más...',array('controller'=>'posts','action'=>'view',$post['Post']['id']))."</p>"; ?>
+			<?php echo $this->Text->truncate($post['Post']['body'],400,array(
+																				'html'=>true,
+																				'exact'=>true,
+					'ellipsis'=> $this->html->link('leer más...',array('controller'=>'posts','action'=>'view',$post['Post']['id'])))); ?>
+			<?php /*echo "<p class='noticia'>".$this->html->link('leer más...',array('controller'=>'posts','action'=>'view',$post['Post']['id']))."</p>"; */?>
 		</div>
 		<div class="action">
 			<?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $post['Post']['id'])); ?>

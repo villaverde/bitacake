@@ -15,7 +15,7 @@ class CommentsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
-
+		public $helpers = array('Tinymce');
 /**
  * index method
  *

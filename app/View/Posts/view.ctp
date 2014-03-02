@@ -21,17 +21,40 @@
 			<?php echo stripslashes($post['Post']['body']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Created'); ?></dt>
+		<dt><?php echo __('Creado'); ?></dt>
 		<dd>
 			<?php echo h($post['Post']['created']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
+		<dt><?php echo __('Modificado'); ?></dt>
 		<dd>
 			<?php echo h($post['Post']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>
+
+<!--//comentarios-->
+
+<div class="comments">
+<?php echo $this->Form->create('Comment'); ?>
+
+	<?php
+		echo $this->Form->input('user_id',array('type'=>'hidden'));
+		echo $this->Form->input('post_id',array('type'=>'hidden','value'=>$post['Post']['id']));
+		echo $this->Form->input('title',array('type'=>'hidden'));
+        echo $this->tinyMce->input('Comment.comment', array(
+            'label' => 'Comentario'
+            ),array(
+                'language'=>'en'
+            ),
+            'simple' );
+	?>
+
+<?php echo $this->Form->end(__('Comentar')); ?>
+</div>
+
+<!--
+
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
@@ -43,11 +66,12 @@
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Comments'), array('controller' => 'comments', 'action' => 'index')); ?> </li>
-		
+		<li><?php echo $this->Html->link(__('New Comment'), array('controller' => 'comments', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+-->
 <div class="related">
-
+	<h3><?php echo __('Related Comments'); ?></h3>
 	<?php if (!empty($post['Comment'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -81,25 +105,9 @@
 	</table>
 <?php endif; ?>
 
-	
-</div>
-
-
-<div class="comments form">
-<?php echo $this->Form->create('Comment'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Comment'); ?></legend>
-	<?php
-		echo $this->Form->input('user_id');
-		echo $this->Form->input($post['Post']['id'], array('type','hidden'));
-		echo $this->Form->input('title');
-		echo $this->tinyMce->input('Comment.comment', array(
-            'label' => 'Contenido'
-            ),array(
-                'language'=>'en'
-            ),
-            'simple' );
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Comment'), array('controller' => 'comments', 'action' => 'add')); ?> </li>
+		</ul>
+	</div>
 </div>
