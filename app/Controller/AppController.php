@@ -33,10 +33,11 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 	public $components = array(
 			'DebugKit.Toolbar',
+			'Acl',
 			'Auth' => array(
 					'authorize' => array(
-							'Actions' => array('actionPath' => 'controllers')
-						)
+							'Actions' => array('actionPath' => 'controllers', 'userModel' => 'User')
+							)
 				),
 			'Session'
 		);
