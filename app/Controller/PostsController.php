@@ -15,6 +15,12 @@ class PostsController extends AppController {
  */
 	public $components = array('Paginator');
 	public $helpers = array('Tinymce');
+
+
+	public function beforeFilter() {
+		//Permitimos solo acceso libre al index y view
+		$this->Auth->allow('index', 'view');
+	}
 /**
  * index method
  *
