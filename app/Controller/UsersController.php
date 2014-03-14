@@ -16,6 +16,11 @@ class UsersController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+	public function beforeFilter() {
+		//Permitimos solo acceso libre al registro de usuarios
+		$this->Auth->allow('register');
+	}
+
 /**
  * delete method
  *
@@ -23,7 +28,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -44,7 +49,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -59,7 +64,7 @@ class UsersController extends AppController {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
-		$perfils = $this->User->Perfil->find('list');
+		$perfils = $this->User->Perfil->find('first');
 		$groups = $this->User->Group->find('list');
 		$this->set(compact('perfils', 'groups'));
 	}
@@ -71,6 +76,15 @@ class UsersController extends AppController {
  */ 
 	public function index(){
 		
+	}
+
+/**
+ * admin_index method
+ *
+ * @return void
+ */ 
+	public function admin_index(){
+		$this->set('users', $this->Paginator->paginate());
 	}
 
 /**
@@ -86,6 +100,11 @@ class UsersController extends AppController {
             $this->Session->setFlash(__('Tu usuario o clave es incorrecta'));
         }
 
+	}
+
+
+	public function admin_login() {
+		return $this->redirect('/users/register');
 	}
 
 /**
@@ -104,8 +123,10 @@ class UsersController extends AppController {
  */
 	public function register() {
 		if ($this->request->is('post')) {
+			$options = array('conditions' => array('Group.name' => 'User'));
+			$grupousers = $this->User->Group->find('first', $options);
 			$this->User->create();
-			$this->request->data['User']['group_id']= 3;
+			$this->request->data['User']['group_id']= $grupousers['Group']['id'];
 			if ($this->User->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('Gracias por registrarse.'));
 				return $this->redirect(array('action' => 'login'));
@@ -118,6 +139,7 @@ class UsersController extends AppController {
 		$this->set(compact('perfils', 'groups'));
 	}
 
+
 /**
  * view method
  *
@@ -126,6 +148,14 @@ class UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+		$this->set('user', $this->User->find('first', $options));
+	}
+
+	public function admin_view($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
