@@ -36,6 +36,52 @@ CREATE TABLE IF NOT EXISTS `acos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
+--
+-- Volcado de datos para la tabla `acos`
+--
+
+INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
+(1, NULL, NULL, NULL, 'controllers', 1, 80),
+(2, 1, NULL, NULL, 'Admin', 2, 5),
+(3, 2, NULL, NULL, 'index', 3, 4),
+(4, 1, NULL, NULL, 'Comments', 6, 17),
+(5, 4, NULL, NULL, 'index', 7, 8),
+(6, 4, NULL, NULL, 'view', 9, 10),
+(7, 4, NULL, NULL, 'add', 11, 12),
+(8, 4, NULL, NULL, 'edit', 13, 14),
+(9, 4, NULL, NULL, 'delete', 15, 16),
+(10, 1, NULL, NULL, 'Groups', 18, 29),
+(11, 10, NULL, NULL, 'admin_index', 19, 20),
+(12, 10, NULL, NULL, 'admin_view', 21, 22),
+(13, 10, NULL, NULL, 'admin_add', 23, 24),
+(14, 10, NULL, NULL, 'admin_edit', 25, 26),
+(15, 10, NULL, NULL, 'admin_delete', 27, 28),
+(16, 1, NULL, NULL, 'Pages', 30, 33),
+(17, 16, NULL, NULL, 'display', 31, 32),
+(18, 1, NULL, NULL, 'Posts', 34, 47),
+(19, 18, NULL, NULL, 'index', 35, 36),
+(20, 18, NULL, NULL, 'listado', 37, 38),
+(21, 18, NULL, NULL, 'view', 39, 40),
+(22, 18, NULL, NULL, 'admin_add', 41, 42),
+(23, 18, NULL, NULL, 'admin_edit', 43, 44),
+(24, 18, NULL, NULL, 'admin_delete', 45, 46),
+(25, 1, NULL, NULL, 'Users', 48, 69),
+(26, 25, NULL, NULL, 'admin_delete', 49, 50),
+(27, 25, NULL, NULL, 'admin_edit', 51, 52),
+(28, 25, NULL, NULL, 'index', 53, 54),
+(29, 25, NULL, NULL, 'admin_index', 55, 56),
+(30, 25, NULL, NULL, 'login', 57, 58),
+(31, 25, NULL, NULL, 'admin_login', 59, 60),
+(32, 25, NULL, NULL, 'logout', 61, 62),
+(33, 25, NULL, NULL, 'register', 63, 64),
+(34, 25, NULL, NULL, 'view', 65, 66),
+(35, 25, NULL, NULL, 'admin_view', 67, 68),
+(36, 1, NULL, NULL, 'AclExtras', 70, 71),
+(37, 1, NULL, NULL, 'DebugKit', 72, 79),
+(38, 37, NULL, NULL, 'ToolbarAccess', 73, 78),
+(39, 38, NULL, NULL, 'history_state', 74, 75),
+(40, 38, NULL, NULL, 'sql_explain', 76, 77);
+
 -- --------------------------------------------------------
 
 --
@@ -78,6 +124,13 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `ARO_ACO_KEY` (`aro_id`,`aco_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+--
+-- Volcado de datos para la tabla `aros_acos`
+--
+
+INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
+(1, 1, 1, '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
