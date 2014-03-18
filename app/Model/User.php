@@ -87,7 +87,12 @@ class User extends AppModel {
 		)
 	);
 
-	public $hasOne = 'Perfil';
+	public $hasOne = array(
+		'Perfil' => array(
+				'className' =>'Perfil',
+				'dependent'    => true,
+			)
+	);
 
 	public function beforeSave($options = array()) {
         //Hacemos que cada vez que guarde la clave en la base de datos la hashed
@@ -128,7 +133,7 @@ class User extends AppModel {
     }
 
     public function bindNode($usuario) {
-    	return array('model' => 'Group', 'foreign_key' => $usuario['Usuario']['group_id']);
+    	return array('model' => 'Group', 'foreign_key' => $usuario['User']['group_id']);
 	}
 
 }

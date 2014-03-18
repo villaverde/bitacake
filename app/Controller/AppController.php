@@ -47,7 +47,7 @@ class AppController extends Controller {
 		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
 		$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
 		//Temporalmente dejamos acceso libre
-		//$this->Auth->allow();
+		$this->Auth->allow();
 
 		// Añadimos la comprobacion del prefijo admin para cargar el
 		// layout admin si se esta en el panel

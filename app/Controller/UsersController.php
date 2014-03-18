@@ -18,7 +18,8 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		//Permitimos solo acceso libre al registro de usuarios
-		$this->Auth->allow('register');
+		$this->Auth->allow('register','login');
+		$this->Auth->allow();
 	}
 
 /**
@@ -84,6 +85,10 @@ class UsersController extends AppController {
  * @return void
  */ 
 	public function admin_index(){
+		$group = $this->User->Group;
+		$group->id = 1;
+		//$this->Acl->allow($group, 'controllers');
+		debug($group);
 		$this->set('users', $this->Paginator->paginate());
 	}
 
@@ -104,7 +109,7 @@ class UsersController extends AppController {
 
 
 	public function admin_login() {
-		return $this->redirect('/users/register');
+		return $this->redirect('/users/login');
 	}
 
 /**
@@ -113,7 +118,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function logout(){
-
+		$this->redirect('/users/login');
 	}
 	
 /**
