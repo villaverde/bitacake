@@ -18,7 +18,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		//Permitimos solo acceso libre al registro de usuarios
-		$this->Auth->allow('register','login');
+		$this->Auth->allow('register','login', 'logout');
 	}
 
 /**
