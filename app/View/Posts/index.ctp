@@ -10,10 +10,12 @@
 					'ellipsis'=> '<p class="mas">'.$this->html->link('leer más...',array('controller'=>'posts','action'=>'view',$post['Post']['id'])))).'</p>'; ?>
 			<?php /*echo "<p class='noticia'>".$this->html->link('leer más...',array('controller'=>'posts','action'=>'view',$post['Post']['id']))."</p>"; */?>
 		</div>
+		<!--
 		<div class="action">
 			<p><?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $post['Post']['id'])); ?></p>
 			<p><?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $post['Post']['id']), null, __('Are you sure you want to delete # %s?', $post['Post']['id'])); ?></p>
 		</div>
+	-->
 		<div class="pie_post">
 			Creado el 
 			<span class="creado"><?php echo h($post['Post']['created']); ?></span>

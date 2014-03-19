@@ -21,6 +21,7 @@ class PostsController extends AppController {
 		//Permitimos solo acceso libre al index y view
 		$this->Auth->allow('index', 'view');
 	}
+	
 /**
  * index method
  *
@@ -31,10 +32,11 @@ class PostsController extends AppController {
 		$this->set('posts', $this->Paginator->paginate());
 	}
 
-	public function listado() {
+	public function admin_index() {
 		$this->Post->recursive = 0;
 		$this->set('posts', $this->Paginator->paginate());
 	}
+
 
 /**
  * view method
