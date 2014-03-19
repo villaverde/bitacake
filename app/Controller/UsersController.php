@@ -69,6 +69,23 @@ class UsersController extends AppController {
 		$this->set(compact('perfils', 'groups'));
 	}
 
+	public function miperfil() {
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('The user has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $this->Session->read('Auth.User.id')));
+			$this->request->data = $this->User->find('first', $options);
+		}
+		$perfils = $this->User->Perfil->find('first');
+		$groups = $this->User->Group->find('list');
+		$this->set(compact('perfils', 'groups'));
+	}
+
 /**
  * index method
  *

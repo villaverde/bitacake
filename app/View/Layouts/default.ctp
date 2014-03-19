@@ -34,8 +34,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<h1>BitaCake</h1>
 			<div class="menuuser">
 			<?php if (AuthComponent::user('id')){
-				echo "<figure><img src=\"".$this->Session->read('Auth.User.Perfil.avatar')."\"></figure>";
-   				echo $this->Session->read('Auth.User.username');
+				//echo "<figure><img src=\"".$this->Session->read('Auth.User.Perfil.avatar')."\"></figure>";
+				echo "<figure>".$this->Html->image($this->Session->read('Auth.User.Perfil.avatar'))."</figure>";
+   				echo $this->Session->read('Auth.User.username')." - ".$this->Html->link('Salir', '/users/logout	');
    				}else{
    					echo $this->Html->link('Regístrate','/users/register')." - ".$this->Html->link('Entrar','/users/login');
    				}
