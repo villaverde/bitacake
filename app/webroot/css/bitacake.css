@@ -1,13 +1,6 @@
-header {
-  background: #003d4c;
-}
-header h1 {
-  background: #003d4c;
-  color: #fff;
-}
-header nav {
-  background: #5eb2d9;
-}
-header nav li {
-  display: inline-block;
-}
+header{background:#003d4c;overflow:hidden;}
+header h1{background:#003d4c;color:#fff}
+header .menuuser{float:right;padding:0 2em 0 0;}
+header .menuuser a{color:#fff}
+nav{background:#5eb2d9;}
+nav li{display:inline-block}

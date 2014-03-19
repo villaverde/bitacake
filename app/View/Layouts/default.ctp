@@ -32,13 +32,22 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<div id="container">
 		<header>
 			<h1>BitaCake</h1>
-			<nav>
+			<div class="menuuser">
+			<?php if (AuthComponent::user('id')){
+				echo "<figure><img src=\"".$this->Session->read('Auth.User.Perfil.avatar')."\"></figure>";
+   				echo $this->Session->read('Auth.User.username');
+   				}else{
+   					echo $this->Html->link('Regístrate','/users/register')." - ".$this->Html->link('Entrar','/users/login');
+   				}
+   			?> 
+   			</div>
+		</header>
+		<nav>
 				<ul>
 					<li>Inicio</li>
 					<li>Contacta</li>
 				</ul>
-			</nav>
-		</header>
+		</nav>
 		<section id="content">
 
 			<?php echo $this->Session->flash(); ?>
