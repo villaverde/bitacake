@@ -87,7 +87,8 @@ class PostsController extends AppController {
 			}
 		}
 		$users = $this->Post->User->find('list');
-		$this->set(compact('users'));
+		$user=$this->Auth->User('id');
+		$this->set(compact('users','user'));
 	}
 
 /**

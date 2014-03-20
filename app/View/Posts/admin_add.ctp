@@ -3,7 +3,8 @@
 	<fieldset>
 		<legend><?php echo __('Add Post'); ?></legend>
 	<?php
-		echo $this->Form->input('user_id');
+		echo $this->Form->hidden($user);
+		//echo $this->Form->input('user_id');
 		echo $this->Form->input('title');
 		echo $this->tinyMce->input('Post.body', array(
             'label' => 'Contenido'
