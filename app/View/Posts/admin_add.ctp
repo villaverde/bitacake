@@ -1,11 +1,10 @@
 <div class="posts form">
 <?php echo $this->Form->create('Post'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Post'); ?></legend>
+		<legend><?php echo __('Añadir Post'); ?></legend>
 	<?php
-		echo $this->Form->hidden($user);
-		//echo $this->Form->input('user_id');
-		echo $this->Form->input('title');
+		echo $this->Form->input('user_id',array('type'=>'hidden','value'=>$user));
+		echo $this->Form->input('Post.title',array('label'=>'Título'));
 		echo $this->tinyMce->input('Post.body', array(
             'label' => 'Contenido'
             ),array(
@@ -14,7 +13,7 @@
             'full' );
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Guardar')); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
