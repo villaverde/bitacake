@@ -19,9 +19,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		//echo $this->Html->css('cake.generic');
 		echo $this->Html->css('normalize.css');
-		echo $this->Html->css('bitacake.css');
+		echo $this->Html->css('foundation');
+		echo $this->Html->script('vendor/modernizr.js');
+		//echo $this->Html->css('bitacake.css');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -29,41 +31,86 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
-	<div id="container">
-		<header>
-			<h1>BitaCake</h1>
-			<div class="menuuser">
-			<?php if (AuthComponent::user('id')){
-				//echo "<figure><img src=\"".$this->Session->read('Auth.User.Perfil.avatar')."\"></figure>";
-				echo "<figure>".$this->Html->image($this->Session->read('Auth.User.Perfil.avatar'))."</figure>";
-   				echo $this->Session->read('Auth.User.username')." - ".$this->Html->link('Salir', '/users/logout	');
-   				}else{
-   					echo $this->Html->link('Regístrate','/users/register')." - ".$this->Html->link('Entrar','/users/login');
-   				}
-   			?> 
-   			</div>
-		</header>
-		<nav>
-				<ul>
-					<li>Inicio</li>
-					<li>Contacta</li>
-				</ul>
-		</nav>
-		<section id="content">
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
-		</section>
-		<footer>
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</footer>
-	</div>
-	<?php //echo $this->element('sql_dump'); ?>
+	  <!-- Nav Bar -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+       <ul class="button-group">
+         <li><a href="#" class="button">Inicio</a></li>
+         <li><a href="#" class="button">Registrarse</a></li>
+         <li><a href="#" class="button">Entrar</a></li>
+         <li><a href="#" class="button">Contacta</a></li>
+        </ul>
+      </div>
+      <h1>BitaCake <small>Blog creado con cakephp</small></h1>
+      <hr />
+    </div>
+  </div>
+ 
+  <!-- End Nav -->
+ 
+ 
+  <!-- Main Page Content and Sidebar -->
+ 
+  <div class="row">
+ 
+    <!-- Main Blog Content -->
+    <div class="large-9 columns" role="content">
+ 
+     <?php echo $this->fetch('content'); ?>
+  
+    </div>
+ 
+    <!-- End Main Content -->
+ 
+ 
+    <!-- Sidebar -->
+ 
+    <aside class="large-3 columns">
+ 
+      <h5>Categories</h5>
+      <ul class="side-nav">
+        <li><a href="#">News</a></li>
+        <li><a href="#">Code</a></li>
+        <li><a href="#">Design</a></li>
+        <li><a href="#">Fun</a></li>
+        <li><a href="#">Weasels</a></li>
+      </ul>
+ 
+      <div class="panel">
+        <h5>Featured</h5>
+        <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow.</p>
+        <a href="#">Read More →</a>
+      </div>
+ 
+    </aside>
+ 
+    <!-- End Sidebar -->
+  </div>
+ 
+  <!-- End Main Content and Sidebar -->
+ 
+ 
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>	
 </body>
 </html>
