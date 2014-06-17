@@ -19,11 +19,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php
 		echo $this->Html->meta('icon');
 
-		//echo $this->Html->css('cake.generic');
 		echo $this->Html->css('normalize.css');
 		echo $this->Html->css('foundation');
 		echo $this->Html->script('vendor/modernizr.js');
-		//echo $this->Html->css('bitacake.css');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -37,10 +35,18 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
     <div class="large-12 columns">
       <div class="nav-bar right">
        <ul class="button-group">
-         <li><a href="#" class="button">Inicio</a></li>
-         <li><a href="#" class="button">Registrarse</a></li>
-         <li><a href="#" class="button">Entrar</a></li>
+         <li><?php echo $this->Html->link('Inicio','/', array('class' => 'button')); ?></li>
          <li><a href="#" class="button">Contacta</a></li>
+         <?php if($this->Session->read('Auth.User')==null){?>
+         <li><?php echo $this->Html->link('Entrar',array('controller' => 'users', 'action' => 'login',), array('class' => 'button')); ?></li>
+         <?php } else {  ?>
+         <li><?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout',), array('class' => 'button')); ?></li>
+         <?php } ?>
+         <?php if($this->Session->read('Auth.User')==null){?>
+         <li><?php echo $this->Html->link('Rgistrarse',array('controller' => 'users', 'action' => 'register',), array('class' => 'button')); ?></li>
+         <? } else {?>
+              <li><a href="#" class="button">Perfil</a></li>
+         <? } ?>
         </ul>
       </div>
       <h1>BitaCake <small>Blog creado con cakephp</small></h1>
@@ -57,7 +63,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
  
     <!-- Main Blog Content -->
     <div class="large-9 columns" role="content">
- 
+      <?php echo $this->Session->flash(); ?>
      <?php echo $this->fetch('content'); ?>
   
     </div>
