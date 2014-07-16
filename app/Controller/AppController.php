@@ -53,5 +53,6 @@ class AppController extends Controller {
 		if ((isset($this->params['prefix']) && ($this->params['prefix'] == 'admin'))) {
         	$this->layout = 'admin';
     	}
+    	Configure::load('bitacake');
 	}
 }
